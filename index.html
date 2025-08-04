@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text-triggered Image Popup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    /* Clickable Text */
+    .open-popup {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    /* Popup Container */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* Image in Popup */
+    .popup img {
+      max-width: 90%;
+      max-height: 90%;
+      /* box-shadow: 0 0 20px rgba(255,255,255,0.4); */
+    }
+
+    /* Close Button (X) */
+    .popup::after {
+      content: '×';
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <p>
+    Click here to <span class="open-popup" id="openText">View Image</span>.
+  </p>
+
+  <!-- Popup -->
+  <div class="popup" id="popup">
+    <img src="IMG_9311.JPEG" alt="Popup Image">
+  </div>
+
+  <script>
+    const openText = document.getElementById('openText');
+    const popup = document.getElementById('popup');
+
+    openText.addEventListener('click', () => {
+      popup.style.display = 'flex';
+    });
+
+    popup.addEventListener('click', (e) => {
+      if (e.target !== popup.querySelector('img')) {
+        popup.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
